@@ -69,4 +69,3 @@ Task3
 1. 发现task3的任务和task1中添加的GPT-5作为'Critic'的任务有些重复了。
 2. 于是尝试喂给task3的评价者原始数据和query，来尝试丰富评价维度。
 
-另外置入了在kaggle上进行探索的ipynb记录研究全过程。
