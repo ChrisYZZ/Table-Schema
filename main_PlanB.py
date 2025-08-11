@@ -7,6 +7,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from sentence_transformers import SentenceTransformer, util
 from dotenv import load_dotenv
 import numpy as np
+import re  # Added for better score parsing
 
 # Load environment variables
 load_dotenv()
@@ -185,18 +186,18 @@ def perform_search(state: ProjectState) -> ProjectState:
                 prompt = f"Given these table summaries:\n{summaries_text}\n\nUser Query: {query}\n\nSelect the most relevant table and explain why."
                 match_response = state['llm'].invoke(prompt).content
             elif state['strategy'] == 'embedding':
-                # Embedding-only fallback
+                # Embedding-only fallback (Unified format for parsing)
                 summaries = list(state['table_summaries'].values())
                 summary_embs = state['embedding_model'].encode(summaries, convert_to_tensor=True)
                 query_emb = state['embedding_model'].encode(query, convert_to_tensor=True)
                 cos_scores = util.cos_sim(query_emb, summary_embs)[0].cpu().numpy()
                 top_idx = np.argmax(cos_scores)
                 top_table = list(state['table_summaries'].keys())[top_idx]
-                match_response = f"Table: {top_table} - Score: {cos_scores[top_idx]:.4f}"
+                match_response = f"Table: {top_table} - Score: {cos_scores[top_idx]:.4f}"  # Unified "Table: " prefix
             else:
                 raise ValueError("Invalid strategy")
             
-            table_name = match_response.split("Table: ")[1].split(" ")[0].strip() if "Table: " in match_response else None
+            table_name = match_response.split("Table: ")[1].split(" - ")[0].strip() if "Table: " in match_response else None  # Adjusted parsing for score
             if table_name:
                 state['match_results'].append({'query': query, 'matched_table': table_name})
                 print(f"  Matched: {table_name}")
@@ -261,24 +262,22 @@ Reflect on agreement in 1-2 sentences.
 # ========== Condition for Fallback ==========
 def check_evaluation(state: ProjectState) -> str:
     """Check if evaluation is satisfactory; if not, fallback to another strategy"""
-    # Parse evaluations for scores (assume first number in evaluation is score)
+    # Parse evaluations for scores (use regex to find first number after "Rating:")
     if state.get('evaluations'):
         scores = []
         for eval_str in state['evaluations']:
-            try:
-                score = int(eval_str.split()[1])  # Assume "Rating: 5" format
-                scores.append(score)
-            except:
-                score = 3  # Default if parse fails
-                scores.append(score)
+            match = re.search(r'Rating:\s*(\d+)', eval_str)
+            score = int(match.group(1)) if match else 3  # Default if parse fails
+            scores.append(score)
         avg_score = sum(scores) / len(scores)
         if avg_score < 4 and state['retry_count'] < 2:
             state['retry_count'] += 1
+            old_strategy = state['strategy']
             if state['strategy'] == 'hybrid':
                 state['strategy'] = 'llm_only'
             elif state['strategy'] == 'llm_only':
                 state['strategy'] = 'embedding'
-            print(f"Average score {avg_score:.1f} < 4, retrying with strategy: {state['strategy']}")
+            print(f"Average score {avg_score:.1f} < 4, retrying with strategy: {state['strategy']} (from {old_strategy})")
             return "perform_search"  # Fallback to search with new strategy
         # If all retries fail, note potential future fallback to Task1
         # Future: if state['retry_count'] >= 2: return "generate_summaries"  # Regenerate summaries if needed
@@ -315,7 +314,7 @@ def load_queries_and_judgments(file_path="query.txt") -> tuple[List[str], List[s
     return queries, judgments
 
 # ========== Create Workflow ==========
-def create_workflow() ->StateGraph:
+def create_workflow() -> StateGraph:
     """Create LangGraph workflow for the mini-project"""
     workflow = StateGraph(ProjectState)
     
