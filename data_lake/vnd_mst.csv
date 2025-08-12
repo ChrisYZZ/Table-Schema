@@ -1,0 +1,5 @@
+v_id,v_nm,v_typ,pmt_trm,rtg,st
+V001,TechSupply Co,TECH,N30,4.5,A
+V002,OfficeMax,SUPP,N15,4.0,A
+V003,Global Parts,MFG,N45,3.5,I
+V004,Quick Ship Ltd,LOG,COD,4.2,A

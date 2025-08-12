@@ -1,0 +1,6 @@
+product_id,product_name,category,price,stock_quantity
+PROD-001,Laptop Pro,Electronics,1299.99,45
+PROD-002,Wireless Mouse,Accessories,29.99,150
+PROD-003,USB Hub,Accessories,49.99,80
+PROD-004,"Monitor 27""",Electronics,399.99,25
+PROD-005,Keyboard Mechanical,Accessories,149.99,60

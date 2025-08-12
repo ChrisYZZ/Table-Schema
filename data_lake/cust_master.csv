@@ -1,0 +1,6 @@
+cust_id,cust_nm,reg_dt,cust_type,credit_lmt,stat_cd
+C0001,Acme Corp,2023-01-10,CORP,50000.0,ACT
+C0002,TechStart Inc,2023-03-15,SMB,25000.0,ACT
+C0003,Global Trade LLC,2023-06-22,ENT,100000.0,ACT
+C0004,,2023-09-01,SMB,15000.0,PEND
+C0005,Smart Solutions,2023-11-30,CORP,,ACT

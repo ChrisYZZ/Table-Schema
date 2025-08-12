@@ -1,0 +1,6 @@
+emp_no,course_id,course_name,completion_date,score,status
+EMP001,SEC-101,Security Awareness,2024-01-05,95,PASS
+EMP002,TECH-202,Advanced Java,2023-12-15,88,PASS
+EMP003,HR-301,Interviewing Skills,2024-01-10,92,PASS
+EMP004,SEC-101,Security Awareness,2024-01-05,87,PASS
+EMP005,FIN-401,Budget Planning,2023-11-20,94,PASS

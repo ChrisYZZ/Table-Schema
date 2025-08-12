@@ -1,0 +1,7 @@
+pay_cd,pay_desc,proc_fee_pct,active_flg
+CC,Credit Card,2.9,Y
+DEBIT,Debit Card,1.5,Y
+CASH,Cash,0.0,Y
+CHECK,Check,0.0,N
+WIRE,Wire Transfer,15.0,Y
+PAYPAL,PayPal,2.9,Y

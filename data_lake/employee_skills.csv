@@ -1,0 +1,7 @@
+eid,skill,level,certified,last_used
+EMP001,Python,Expert,Y,2024-01-15
+EMP002,Java,Expert,Y,2024-01-10
+EMP002,SQL,Intermediate,N,2024-01-18
+EMP003,Recruiting,Expert,Y,2024-01-20
+EMP004,Excel,Advanced,Y,2024-01-19
+EMP005,Financial Analysis,Expert,Y,2024-01-20

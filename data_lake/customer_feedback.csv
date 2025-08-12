@@ -1,0 +1,7 @@
+feedback_id,customer_ref,date_received,rating,comment,category
+1001,C0001,2024-01-15,5,Great product!,PRODUCT
+1002,cust_002,01/16/2024,4,Good service,service
+1003,,2024/01/17,,,SHIPPING
+1004,C0003,,3,Shipping was slow,Delivery
+1005,CUSTOMER-004,20240118,5,Excellent!!!!!,
+1006,C0002,2024-01-19,4,satisfied,Product

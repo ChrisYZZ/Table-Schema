@@ -1,0 +1,5 @@
+exp_id,e_no,exp_dt,cat,amt,apr_st,notes
+EXP001,E001,20240110,TRV,450.0,APR,Client meeting NYC
+EXP002,E002,20240112,MEAL,85.5,PND,Team lunch
+EXP003,E003,20240115,SUPP,125.0,REJ,Office supplies
+EXP004,E001,20240118,TRV,320.0,APR,Conference

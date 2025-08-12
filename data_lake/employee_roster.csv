@@ -1,0 +1,6 @@
+employee_id,employee_name,department,hire_date,email,status
+EMP001,John Smith,Sales,2020-01-15,john.smith@company.com,Active
+EMP002,Jane Doe,IT,2019-03-22,jane.doe@company.com,Active
+EMP003,Bob Johnson,HR,2021-06-01,bob.j@company.com,Active
+EMP004,Alice Brown,Sales,2020-11-10,alice.b@company.com,On Leave
+EMP005,Charlie Wilson,Finance,2022-02-28,charlie.w@company.com,Active

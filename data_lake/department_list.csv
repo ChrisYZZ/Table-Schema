@@ -1,0 +1,6 @@
+department_id,department_name,manager_id,budget,location
+D001,Sales,EMP001,500000,Building A
+D002,IT,EMP002,800000,Building B
+D003,HR,EMP003,300000,Building A
+D004,Finance,EMP005,600000,Building C
+D005,Operations,EMP006,400000,Building B

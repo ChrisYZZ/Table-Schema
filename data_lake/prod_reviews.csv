@@ -1,0 +1,6 @@
+r_id,p_cd,usr,rtg,rvw_dt,vrfd
+2001,PROD-001,john.doe@email.com,5.0,20240115,Y
+2002,PROD001,jane_smith,4.0,20240116,N
+2003,prod-002,User123,3.0,20240117,y
+2004,PROD-003,,5.0,20240118,1
+2005,PROD-004,alice@company,,20240119,
